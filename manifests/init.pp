@@ -196,10 +196,7 @@ class resolver (
   $manage_file_content = $resolver::template ? {
     ''          => $resolver::dns_servers ? {
       ''        => undef,
-      default   => $resolver::dns_domain ? {
-        ''      => undef,
-        default => template('resolver/resolv.conf.erb'),
-      },
+      default   => template('resolver/resolv.conf.erb'),
     },
     default     => template($resolver::template),
   }

@@ -15,7 +15,7 @@
 class resolver::params {
 
   ### Module's specific parameters
-  $dns_domain = $::domain
+  $dns_domain = ''
   $dns_servers = ''
   $search = ''
   $sortlist = ''

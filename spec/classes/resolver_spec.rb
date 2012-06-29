@@ -26,24 +26,6 @@ describe 'resolver' do
     end
   end
 
-  describe 'Test with default domain' do
-    let(:params) { { :dns_servers => ['nameserver1', 'nameserver2'] } }
-
-    it { should contain_file('resolv.conf').with_ensure('present') }
-    it 'should generate a valid template' do
-      content = catalogue.resource('file', 'resolv.conf').send(:parameters)[:content]
-      content.should match "domain test.dom"
-      content.should match "nameserver nameserver1"
-      content.should match "nameserver nameserver2"
-      content.should_not match "sortlist"
-      content.should_not match "options"
-    end
-    it 'should not request a source' do
-      content = catalogue.resource('file', 'resolv.conf').send(:parameters)[:source]
-      content.should be_nil
-    end
-  end
-
   describe 'Test parameters as arrays' do
     let(:params) { {:dns_domain => 'the_domain', :search => ['search1', 'search2'], :dns_servers => ['nameserver1', 'nameserver2'], :sortlist => ['sort1', 'sort2'] } }
 

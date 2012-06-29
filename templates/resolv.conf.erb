@@ -1,5 +1,7 @@
 # File Managed by Puppet
+<% if scope.lookupvar('resolver::dns_domain').length > 0 then -%>
 domain <%= scope.lookupvar('resolver::dns_domain') %>
+<% end -%>
 <% if scope.lookupvar('resolver::array_search').length > 0 then -%>
 search <% scope.lookupvar('resolver::array_search').each do |src| %><%= src %> <% end %>
 <% end -%>
